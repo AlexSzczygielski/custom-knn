@@ -1,9 +1,3 @@
-<style>
-r { color: #8e3b46 }
-o { color: Orange }
-g { color: #2e7d32; }
-</style>
-
 # K-Nearest Neighbors Algorithm Overview
 
 ## What is it?
@@ -77,9 +71,9 @@ in an $n$-dimensional real coordinate space is the sum of the absolute differenc
 
 | Strengths | Weaknesses |
 | :---:       | :---:     |
-| <g>**+ Straightforward implementation**</g>         | <r>**- Does not Scale Well (in big datasets)**</r>       |
-| <g>**+ Only a Few Hyper Parameters**</g> | <r>**- Does not perform well with dimensional data**</r>     |
-| <g>**+ Adaptable to new data**</g>       | <r>**- Overfitting (too low K values can overfit the data, while too high K can smooth out the predictions)**</r> |
+| **+ Straightforward implementation**         | **- Does not Scale Well (in big datasets)**       |
+| **+ Only a Few Hyper Parameters** | **- Does not perform well with dimensional data**    |
+| **+ Adaptable to new data**      | **- Overfitting (too low K values can overfit the data, while too high K can smooth out the predictions)** |
 
 ## Use Cases
 - Data Preprocessing (missing data computations)
