@@ -2,7 +2,7 @@
 
 ## A final project for the Programming in Python Language engineering course.
 
-Custom implementation of the k-Nearest Neighbors (k-NN) algorithm, developed in Python and compared against scikit-learn. Project utilises a `github` repository, `PyScaffold` packaging and was developed in `VirtualEnv`.
+Custom implementation of the **[k-Nearest Neighbors (k-NN) algorithm](docs/KNN_OVERVIEW.md)**, developed in Python and compared against scikit-learn. Project utilises a `github` repository, `PyScaffold` packaging and was developed in `VirtualEnv`.
 
 <div align="center">
 
@@ -11,6 +11,18 @@ Custom implementation of the k-Nearest Neighbors (k-NN) algorithm, developed in 
 [![scikit-learn](https://img.shields.io/badge/-scikit--learn-F7931E?logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
 
 </div>
+
+<div align="center">
+<img width = 50% alt= "K-NN Visualization Graph" src= "docs/assets/knn_visualization.png">
+<p>
+    <em>
+        Figure 1: K-Nearest Neighbors visualization. Source: 
+        <a href="https://www.linkedin.com/pulse/k-nearest-neighbors-knn-algorithm-classification-nrxgf">
+        Vrata Tech Solutions Pvt. Ltd. (LinkedIn)</a>
+    </em>
+</p>
+</div>
+
 
 ## Comparison with scikit-learn
 This custom k-NN implementation is tested and compared against scikit-learn's `KNeighborsClassifier` to verify correctness of operation. For further information please refer to the [analysis section](docs/ANALYSIS.md).
@@ -50,6 +62,7 @@ custom-knn % tree -L1
 ---
 
 ## Documentation:
+### [K-Nearest Neighbors Algorithm Overview](docs/KNN_OVERVIEW.md)
 ### [Project requirements](docs/PROJECT_REQUIREMENTS.md)
 ### [Algorithm Implementation](docs/IMPLEMENTATION.md)
 ### [Testing](docs/TESTING.md)
