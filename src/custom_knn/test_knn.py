@@ -20,11 +20,18 @@ class TestKNN:
     def __init__(self, do_print = True):
         self.do_print = do_print    
 
-    def accuracy_test(self, neighbors, X_train, y_train, X_test, y_test):
+    def accuracy_test(self, neighbors, X, y, test_size = 0.2,random_state = 42, dataset_name = "?"):
         """
         Simple accuracy test comparing custom implementation
         with scikit one
+        :param neighbors: number of k neighbours
+        :param X: feature matrix from scikit dataset
+        :param y: target labels matrix from scikit dataset
+        :param test_size: proportion of dataset to include in the test split
+        :param random_state: random seed for reproducibility in train-test splitting
+        :param dataset_name: 
         """
+        X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=test_size, random_state=random_state)
         # Custom k-NN implementation
         knn = KNN(k=neighbors)
         knn.fit(X_train,y_train)
@@ -43,13 +50,30 @@ class TestKNN:
 
         #Results
         if self.do_print == True:
-            print(f"Custom k-NN accuracy: {accuracy} \n"
+            print(f"Dataset: {dataset_name} \n"
+                f"Custom k-NN accuracy: {accuracy} \n"
                 f"Scikit implementation k-NN accuracy: {sk_accuracy} \n"
-                f"Accuracy difference: {accuracy_diff} \n")
+                f"Accuracy difference: {accuracy_diff} \n"
+                f"---------------------\n")
         
         return accuracy,sk_accuracy,accuracy_diff
     
-    def plot_classification(self, neighbors, X_train, y_train, X_test, y_test, data, dataset_name ="?", sample=0):
+    def plot_classification(self, neighbors, X, y, data, test_size = 0.2,random_state = 42, dataset_name ="?", sample=0):
+        """
+        Visualizes k-NN classification on a 2D plot, 
+        using **the first two features of the dataset**.
+        
+        :param neighbors: number of k neighbours
+        :param X: feature matrix from scikit dataset
+        :param y: target labels matrix from scikit dataset
+        :param data: input data from scikit
+        :param test_size: proportion of dataset to include in the test split
+        :param random_state: random seed for reproducibility in train-test splitting
+        :param dataset_name: 
+        :param sample: index of the test sample
+        """
+
+        X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=test_size, random_state=random_state)
 
         feature_names = data.feature_names #names of axis
         target_names = data.target_names #names of plots
@@ -80,12 +104,12 @@ class TestKNN:
         classes = np.unique(y_train)
 
         for cls in classes:
-            label = target_names[cls] if target_names is not None else f"Class {cls}"
+            label_selection = target_names[cls] if target_names is not None else f"Class {cls}"
             plt.scatter(
                 X_train_plot[y_train == cls, 0],
                 X_train_plot[y_train == cls, 1],
                 alpha=0.4,
-                label=f"{dataset_name} class {cls}"
+                label=f"{dataset_name} class {label_selection}"
             )
 
         # Plot test sample
@@ -121,25 +145,25 @@ if __name__ == "__main__":
     test_size = 0.2
     random_state=42
     
+
     ### Wine Dataset ###
     # Prepare data using scikit sets
     data = load_wine()      
     X, y = data.data, data.target 
-
     # For plotting   
     dataset_name = "Wine"
     sample_index = 25
 
-    X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2,random_state=42)
-
     # Perform tests
     test = TestKNN(do_print=True)
 
-    test.accuracy_test(neighbors, X_train, y_train, X_test, y_test)
+    test.accuracy_test(neighbors, X, y, test_size=test_size, random_state=random_state, dataset_name = dataset_name)
     
     test.plot_classification(
-    neighbors, X_train, y_train, X_test, y_test,
+    neighbors, X, y,
     data=data,
+    test_size=test_size,
+    random_state=random_state,
     sample=sample_index,
     dataset_name=dataset_name
     )   
@@ -148,17 +172,21 @@ if __name__ == "__main__":
     ### Breast Cancer Dataset ###
     from sklearn.datasets import load_breast_cancer
     data = load_breast_cancer()     
-    X, y = data.data, data.target
-
+    X, y = data.data, data.target 
     # For plotting   
     dataset_name = "Breast Cancer"
     sample_index = 25
 
-    X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2,random_state=42)
+    # Perform tests
+    test = TestKNN(do_print=True)
 
+    test.accuracy_test(neighbors, X, y, test_size=test_size, random_state=random_state, dataset_name = dataset_name)
+    
     test.plot_classification(
-    neighbors, X_train, y_train, X_test, y_test,
+    neighbors, X, y,
     data=data,
+    test_size=test_size,
+    random_state=random_state,
     sample=sample_index,
     dataset_name=dataset_name
-    )  
+    )
