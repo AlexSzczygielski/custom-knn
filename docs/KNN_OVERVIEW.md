@@ -1,7 +1,11 @@
 # K-Nearest Neighbors Algorithm Overview
 
 ## What is it?
-K-NN is a non-parametric supervised learning method. Most often, it is used classification and regression classification purposes. 
+K-NN is a non-parametric supervised learning method. Most often, it is used for `classification` purposes.
+
+- supervised learning - machine learning method in which algorithm uses a mapping of input data features to predict the output labels.
+- non-parametric - making decisions purely on training data (no explicit parameters).
+- classification - prediction of discrete labels for new data points.
 
 ## How does it work?
 K-NN operates on the assumption that `similar data points are located near each other and can be grouped to the same category, based on their proximity to eachother.` Algorithm already having some labeled data can check the distances of a new input and then label it accordingly. **Before the classification can be made - a distance has to be defined**

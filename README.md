@@ -2,7 +2,7 @@
 
 ## A final project for the Programming in Python Language engineering course.
 
-Custom implementation of the **[k-Nearest Neighbors (k-NN) algorithm](docs/KNN_OVERVIEW.md)**, developed in Python and compared against scikit-learn. Project utilises a `github` repository, `PyScaffold` packaging and was developed in `VirtualEnv`.
+Custom implementation of the **[k-Nearest Neighbors (k-NN) algorithm](docs/KNN_OVERVIEW.md)**, developed in Python and compared against scikit-learn. Project utilises a `github` repository, `PyScaffold` packaging and was developed in `VirtualEnv`. For further information please refer to the [documentation](#documentation).
 
 <div align="center">
 
@@ -34,6 +34,7 @@ This custom k-NN implementation is tested and compared against scikit-learn's `K
 ```bash
 pip install -r requirements.txt
 ```
+> *Or minimal dependencies (no visualization/tests only algorithm): `pip install -r requirements_min.txt`*
 3. Run script
 ```bash
 python src/knn.py
