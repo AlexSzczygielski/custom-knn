@@ -34,6 +34,28 @@ The K-Nearest Neighbors (K-NN) algorithm implemented in this project follows a s
    - Return an array of predicted labels for all input test samples.
    - For visualization, the nearest neighbors can be highlighted in plots (see the `plot_classification` method).
 
+> *Example Outputs*
+<div align="center">
+<img width = 80% alt= "A" src= "assets/Figure_KNN_WINE.png">
+<p>
+    <em>
+        Figure 1: KNN classification plot (Wine dataset)
+        Own Work</a>
+    </em>
+</p>
+</div>
+
+---
+<div align="center">
+<img width = 80% alt= "A" src= "assets/Figure_KNN_BREAST.png">
+<p>
+    <em>
+        Figure 2: KNN classification plot (Breast Cancer dataset)
+        Own Work</a>
+    </em>
+</p>
+</div>
+
 ---
 
 > **Visualization Reference:**  

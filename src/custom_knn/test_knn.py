@@ -166,7 +166,31 @@ if __name__ == "__main__":
     random_state=random_state,
     sample=sample_index,
     dataset_name=dataset_name
-    )   
+    )
+
+    # Plot accuracy differences in different k's
+    test.do_print = False
+    many_ks = range(3, 12)
+    accuracy_diffs = []
+
+    for k in many_ks:
+        _, _, acc_diff = test.accuracy_test(
+            neighbors=k,
+            X=X,
+            y=y,
+            test_size=test_size,
+            random_state=random_state,
+            dataset_name=dataset_name
+        )
+        accuracy_diffs.append(acc_diff)
+
+    plt.figure(figsize=(8,5))
+    plt.plot(many_ks, accuracy_diffs, marker='o')
+    plt.xlabel("k - number of neighbors")
+    plt.ylabel("Accuracy difference (Custom KNN vs Scikit)")
+    plt.title(f"Accuracy difference across k values ({dataset_name} dataset)")
+    plt.grid(True)
+    plt.show() 
 
 
     ### Breast Cancer Dataset ###
@@ -190,3 +214,27 @@ if __name__ == "__main__":
     sample=sample_index,
     dataset_name=dataset_name
     )
+
+    # Plot accuracy differences in different k's
+    test.do_print = False
+    many_ks = range(3, 12)
+    accuracy_diffs = []
+
+    for k in many_ks:
+        _, _, acc_diff = test.accuracy_test(
+            neighbors=k,
+            X=X,
+            y=y,
+            test_size=test_size,
+            random_state=random_state,
+            dataset_name=dataset_name
+        )
+        accuracy_diffs.append(acc_diff)
+
+    plt.figure(figsize=(8,5))
+    plt.plot(many_ks, accuracy_diffs, marker='o')
+    plt.xlabel("k - number of neighbors")
+    plt.ylabel("Accuracy difference (Custom KNN vs Scikit)")
+    plt.title(f"Accuracy difference across k values ({dataset_name} dataset)")
+    plt.grid(True)
+    plt.show()

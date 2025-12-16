@@ -67,7 +67,8 @@ custom-knn % tree -L1
 ### [Project requirements](docs/PROJECT_REQUIREMENTS.md)
 ### [Algorithm Implementation](docs/IMPLEMENTATION.md)
 ### [Testing](docs/TESTING.md)
-### [Analysis (scikit learn)](docs/ANALYSIS.md)
+### [Analysis (scikit learn comparison)](docs/ANALYSIS.md)
+### [Laboratory Exercises](https://github.com/AlexSzczygielski/python-labs-sem7)
 
 ---
 <div align="center">
