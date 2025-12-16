@@ -49,7 +49,7 @@ class TestKNN:
         
         return accuracy,sk_accuracy,accuracy_diff
     
-    def plot_classification(self, neighbors, X_train, y_train, X_test, y_test, idx1, idx2, feature_names, dataset_name ="?", sample=0):
+    def plot_classification(self, neighbors, X_train, y_train, X_test, y_test, idx1, idx2, feature_names, target_names = None, dataset_name ="?", sample=0):
         
         # Use only two features for visualization - idx1 and idx2
         X_train_plot = X_train[:, [idx1, idx2]]
@@ -70,11 +70,12 @@ class TestKNN:
         classes = np.unique(y_train)
 
         for cls in classes:
+            label = target_names[cls] if target_names is not None else f"Class {cls}"
             plt.scatter(
                 X_train_plot[y_train == cls, 0],
                 X_train_plot[y_train == cls, 1],
                 alpha=0.4,
-                label=f"Wine class {cls}"
+                label=f"{dataset_name} class {cls}"
             )
 
         # Plot test sample
@@ -105,41 +106,60 @@ class TestKNN:
 
 
 if __name__ == "__main__":
+    # Parameters
     neighbors = 3
     test_size = 0.2
     random_state=42
+    
+    ### Wine Dataset ###
+    # Prepare data using scikit sets
+    data = load_wine()        
+    X, y = data.data, data.target 
 
-    # Prepare data using scikit sets        
-    X, y = load_wine(return_X_y=True)
+    # For plotting
+    
+    feature_names = data.feature_names
+    idx1 = feature_names.index("alcohol")
+    idx2 = feature_names.index("flavanoids")
+    target_names = data.target_names
+    dataset_name = "Wine"
+    sample_index = 25
 
     X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2,random_state=42)
 
+    # Perform tests
     test = TestKNN(do_print=True)
+
     test.accuracy_test(neighbors, X_train, y_train, X_test, y_test)
     
-    # Get feature names
-    feature_names = load_wine().feature_names
+    test.plot_classification(
+    neighbors, X_train, y_train, X_test, y_test,
+    idx1, idx2,
+    feature_names=feature_names,
+    target_names = target_names,
+    sample=sample_index,
+    dataset_name=dataset_name
+    )   
 
-    # Indices of features to visualize
-    idx1 = feature_names.index("alcohol")
-    idx2 = feature_names.index("flavanoids")
-
-    sample_index = 0
-    dataset_name = "Wine"
-    test.plot_classification(neighbors, X_train, y_train, X_test, y_test, idx1, idx2, feature_names, dataset_name, sample_index)
-
+    ### Breast Cancer Dataset ###
+    from sklearn.datasets import load_breast_cancer
+    data = load_breast_cancer()     
+    X, y = data.data, data.target
+     
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     
+    feature_names = data.feature_names
+    target_names = data.target_names
+    dataset_name = "Breast Cancer"
 
-    """
-    X, y = load_wine(return_X_y=True)
-    features = load_wine().feature_names
+    idx1 = list(feature_names).index("mean radius")
+    idx2 = list(feature_names).index("mean texture")
 
-    idx1 = features.index("alcohol")
-    idx2 = features.index("flavanoids")
-
-    plt.scatter(X[:, idx1], X[:, idx2], c=y)
-    plt.xlabel("Alcohol")
-    plt.ylabel("Flavanoids")
-    plt.title("Wine Dataset: Alcohol vs Flavanoids")
-    plt.show()
-    """
+    test.plot_classification(
+    neighbors, X_train, y_train, X_test, y_test,
+    idx1, idx2,
+    feature_names=feature_names,
+    target_names = target_names,
+    sample=sample_index,
+    dataset_name=dataset_name
+    )  
