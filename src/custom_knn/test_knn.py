@@ -18,7 +18,7 @@ class TestKNN:
     do_print : bool - printing ON/OFF
     """
     def __init__(self, do_print = True):
-        self.do_print = do_print        
+        self.do_print = do_print    
 
     def accuracy_test(self, neighbors, X_train, y_train, X_test, y_test):
         """
@@ -49,7 +49,17 @@ class TestKNN:
         
         return accuracy,sk_accuracy,accuracy_diff
     
-    def plot_classification(self, neighbors, X_train, y_train, X_test, y_test, idx1, idx2, feature_names, target_names = None, dataset_name ="?", sample=0):
+    def plot_classification(self, neighbors, X_train, y_train, X_test, y_test, data, dataset_name ="?", sample=0):
+
+        feature_names = data.feature_names #names of axis
+        target_names = data.target_names #names of plots
+
+        # Pick first two features by default
+        idx1, idx2 = 0, 1
+        if len(feature_names) >= 2:
+            idx1, idx2 = 0, 1  # first two features
+        else:
+            raise ValueError("Dataset must have at least 2 features for plotting.")
         
         # Use only two features for visualization - idx1 and idx2
         X_train_plot = X_train[:, [idx1, idx2]]
@@ -113,15 +123,10 @@ if __name__ == "__main__":
     
     ### Wine Dataset ###
     # Prepare data using scikit sets
-    data = load_wine()        
+    data = load_wine()      
     X, y = data.data, data.target 
 
-    # For plotting
-    
-    feature_names = data.feature_names
-    idx1 = feature_names.index("alcohol")
-    idx2 = feature_names.index("flavanoids")
-    target_names = data.target_names
+    # For plotting   
     dataset_name = "Wine"
     sample_index = 25
 
@@ -134,32 +139,26 @@ if __name__ == "__main__":
     
     test.plot_classification(
     neighbors, X_train, y_train, X_test, y_test,
-    idx1, idx2,
-    feature_names=feature_names,
-    target_names = target_names,
+    data=data,
     sample=sample_index,
     dataset_name=dataset_name
     )   
+
 
     ### Breast Cancer Dataset ###
     from sklearn.datasets import load_breast_cancer
     data = load_breast_cancer()     
     X, y = data.data, data.target
-     
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-    
-    feature_names = data.feature_names
-    target_names = data.target_names
-    dataset_name = "Breast Cancer"
 
-    idx1 = list(feature_names).index("mean radius")
-    idx2 = list(feature_names).index("mean texture")
+    # For plotting   
+    dataset_name = "Breast Cancer"
+    sample_index = 25
+
+    X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2,random_state=42)
 
     test.plot_classification(
     neighbors, X_train, y_train, X_test, y_test,
-    idx1, idx2,
-    feature_names=feature_names,
-    target_names = target_names,
+    data=data,
     sample=sample_index,
     dataset_name=dataset_name
     )  
