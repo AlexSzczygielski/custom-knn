@@ -2,7 +2,7 @@
 import numpy as np
 
 
-class KNN():
+class KNN:
     """
     KNN - K-Nearest Neighbours
     This class is a custom implementation of KNN algorithm
@@ -21,7 +21,7 @@ class KNN():
     def fit(self, X, y):
         """
         This method stores feature vectors and their labels.
-        This method actually only stores data for later comparison,
+        This method actually only stores data for **later comparison**,
         but keeping the unfiorm ML Algorithms name - fit()
 
         Input Parameters
