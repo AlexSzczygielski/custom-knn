@@ -1,6 +1,5 @@
 # knn.py
 import numpy as np
-from collections import Counter
 
 
 class KNN():
@@ -44,12 +43,14 @@ class KNN():
         X - input samples
         """
         X = np.array(X)
-        return np.array([self._predict_single(x) for x in X])
+        return np.array([self._predict_single(sample) for sample in X])
     
-
-    def _predict_single(self, x):
+    def establish_neighbors(self, sample):
+        """
+        Finds neighbours distances and labels
+        """
         # Get Euclidean distance from input to each point in X_train
-        distances = np.linalg.norm(self._X_train - x, axis=1)
+        distances = np.linalg.norm(self._X_train - sample, axis=1)
 
         # Find index of the closest neighbours 
         k_indexes = np.argsort(distances)[:self._k]
@@ -57,6 +58,22 @@ class KNN():
         # Retrieve the k indexes labels (y_train corresponds to them)
         k_labels = self._y_train[k_indexes] # Classes of the neighbours
 
-        # Get most frequent predicitions
-        prediction = Counter(k_labels).most_common(1)[0][0]
+        return k_indexes, k_labels
+
+    def _predict_single(self, sample):
+        """
+        Establishes class label for a single sample
+        """
+        k_indexes, k_labels = self.establish_neighbors(sample)
+
+        # Get most frequent predicitions (labels)
+        label_counts = {} # dictionary
+        for label in k_labels:
+            if label in label_counts:
+                label_counts[label] += 1 # Increase value of key if already exists
+            else:
+                label_counts[label] = 1 # Set value to one if key is first created (added)
+
+        # Find the label with the highest count
+        prediction = max(label_counts, key=label_counts.get)
         return prediction
