@@ -10,6 +10,8 @@ Custom implementation of the **[k-Nearest Neighbors (k-NN) algorithm](docs/KNN_O
 [![Python](https://img.shields.io/badge/Python-blue?logo=python&logoColor=yellow)](https://www.python.org)
 [![scikit-learn](https://img.shields.io/badge/-scikit--learn-F7931E?logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
 
+[![Python tests of custom-KNN implementation](https://github.com/AlexSzczygielski/custom-knn/actions/workflows/python-tests.yml/badge.svg)](https://github.com/AlexSzczygielski/custom-knn/actions/workflows/python-tests.yml)
+
 </div>
 
 <div align="center">
