@@ -65,6 +65,8 @@ custom-knn % tree -L1
 ---
 
 ## Documentation:
+The full, browsable documentation is available online: [view documentation](https://alexszczygielski.github.io/custom-knn/)
+
 ### [K-Nearest Neighbors Algorithm Overview](docs/KNN_OVERVIEW.md)
 ### [Project requirements](docs/PROJECT_REQUIREMENTS.md)
 ### [Algorithm Implementation](docs/IMPLEMENTATION.md)
