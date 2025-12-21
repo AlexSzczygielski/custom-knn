@@ -1,0 +1,7 @@
+custom_knn
+==========
+
+.. toctree::
+   :maxdepth: 4
+
+   custom_knn

@@ -1,0 +1,37 @@
+custom\_knn package
+===================
+
+Submodules
+----------
+
+custom\_knn.knn module
+----------------------
+
+.. automodule:: custom_knn.knn
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+custom\_knn.skeleton module
+---------------------------
+
+.. automodule:: custom_knn.skeleton
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+custom\_knn.testing\_knn module
+-------------------------------
+
+.. automodule:: custom_knn.testing_knn
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: custom_knn
+   :members:
+   :show-inheritance:
+   :undoc-members:
